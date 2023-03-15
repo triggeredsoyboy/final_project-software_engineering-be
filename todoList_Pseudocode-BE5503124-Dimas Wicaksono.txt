@@ -1,0 +1,55 @@
+Todo List Application's Pseudocode
+
+READ AND WRITE "is_running" WITH BOOLEAN
+READ AND WRITE "todo_list" WITH ARRAY OF STRING
+READ AND WRITE "choice" WITH NUMBER
+READ AND WRITE "task_description" WITH STRING
+READ AND WRITE "task_number" WITH NUMBER
+
+STORE "is_running" WITH TRUE
+
+WHILE "is_running" DO
+	PRINT "1. Tambahkan tugas"
+	PRINT "2. Lihat tugas"
+	PRINT "3. Tandai tugas telah selesai"
+	PRINT "4. Keluar"
+
+	STORE "choice" WITH INPUT FROM USER
+
+	IF "choice" EQUALS 1 THEN
+		PRINT "Tambahkan deskripsi tugas:"
+		STORE "task_description" WITH INPUT FROM USER
+		ADD "task_description" TO "todo_list"
+		PRINT "Tugas berhasil ditambahkan!"
+	ELSE IF "choice" EQUALS 2 THEN
+		IF LENGTH OF "todo_list" EQUALS 0 THEN
+			PRINT "Tidak ada tugas yang ditemukan."
+		ELSE
+			PRINT "Todo List:"
+			FOR "i" IN RANGE OF LENGTH OF "todo_list"
+				PRINT "i + 1" + ". " + "todo_list[i]" // variabel "i" sebagai posisi dari setiap data dengan dimulai pada posisi ke 1
+			END FOR
+		END IF
+	ELSE IF "choice" EQUALS 3 THEN
+		IF LENGTH OF "todo_list" EQUALS 0 THEN
+			PRINT "Tidak ada tugas yang ditemukan."
+		ELSE
+			PRINT "Todo List:"
+			FOR "i" IN RANGE OF LENGTH OF "todo_list"
+				PRINT "i + 1" + ". " + "todo_list[i]" // variabel "i" sebagai posisi dari setiap data dengan dimulai pada posisi ke 1
+			END FOR
+			PRINT "Masukkan nomor tugas yang telah selesai:"
+			STORE "task_number" WITH INPUT FROM USER
+			IF "task_number" >= 1 AND "task_number" <= LENGTH OF "todo_list" THEN
+				REMOVE "todo_list[task_number - 1]" FROM "todo_list" // karena data ditampilkan mulai dari angka 1, untuk menghapus data yang sesuai dengan array "todo_list" maka "task_number" harus dikurangi 1 karena indeks dari array dimulai dari 0
+				PRINT "Tugas berhasil ditandai selesai!"
+			ELSE
+				PRINT "Data tidak ditemukan."
+			END IF
+		END IF
+	ELSE IF "choice" EQUALS 4 THEN
+		STORE "is_running" WITH FALSE
+	ELSE
+		PRINT "Input salah, silahkan coba kembali."
+	END IF
+END WHILE
